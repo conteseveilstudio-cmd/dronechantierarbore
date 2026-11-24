@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact et soumission — Chantier Arbore inc.</title>
+<meta name="description" content="Demandez une soumission gratuite : vidéo par drone, photogrammétrie et plans 3D, abattage d'arbres ou rénovation légère. Chantier Arbore inc., Saint-Cuthbert : 438-502-3438.">
+<meta property="og:title" content="Contact et soumission — Chantier Arbore inc.">
+<meta property="og:description" content="Demandez une soumission gratuite : vidéo par drone, photogrammétrie et plans 3D, abattage d'arbres ou rénovation légère. Chantier Arbore inc., Saint-Cuthbert : 438-502-3438.">
+<meta property="og:image" content="images/emprise-ligne.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="entete">
+  <div class="conteneur">
+    <a class="logo" href="index.html"><span class="icones"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#e0703a"/><g stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M13 13l14 14M27 13L13 27"/></g><g fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="4.5"/><circle cx="28" cy="12" r="4.5"/><circle cx="12" cy="28" r="4.5"/><circle cx="28" cy="28" r="4.5"/></g><rect x="16" y="16.5" width="8" height="7" rx="2" fill="#fff"/></svg><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#e0703a"/><path d="M20 7l-8 11h4l-6 8h7v7h6v-7h7l-6-8h4z" fill="#fff"/></svg><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#e0703a"/><path d="M9 20L20 10l11 10" fill="none" stroke="#fff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12.5 18.5V30h15V18.5" fill="none" stroke="#fff" stroke-width="2.6" stroke-linejoin="round"/><rect x="17.5" y="22.5" width="5" height="7.5" fill="#fff"/></svg></span><span>Chantier Arbore inc.<small>Services de drone · Saint-Cuthbert, Québec</small></span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul class="menu" id="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="drone-3d.html">Drone et 3D</a></li>
+      <li><a href="abattage-emondage.html">Abattage</a></li>
+      <li><a href="renovation.html">Rénovation</a></li>
+      <li><a href="a-propos.html">À propos</a></li>
+      <li><a href="conteseveil.html">Création d'app</a></li>
+      <li><a href="contact.html" class="bouton" aria-current="page">Soumission gratuite</a></li>
+    </ul>
+  </div>
+</header>
+<main>
+<section class="banniere courte" style="background-image:url('images/emprise-ligne.jpg')">
+  <div class="conteneur">
+    <span class="etiquette">Soumission gratuite</span>
+    <h1>Parlons de votre projet</h1>
+    <p>Appelez, écrivez ou remplissez le formulaire. On vous revient rapidement.</p>
+  </div>
+</section>
+
+<section>
+  <div class="conteneur contact-grille">
+    <div>
+      <h2>Coordonnées</h2>
+      <ul class="coord">
+        <li><span>Téléphone</span><a href="tel:+14385023438">438-502-3438</a></li>
+        <li><span>Courriel</span><a href="mailto:chantier.arbore@gmail.com">chantier.arbore@gmail.com</a></li>
+        <li><span>Adresse</span><strong>1110, rang du Sud-de-la-Rivière-du-Chicot<br>Saint-Cuthbert (Québec) J0K 2C0</strong></li>
+        <li><span>Zone desservie</span><strong>Partout au Québec pour le drone · Lanaudière pour l'abattage et la rénovation</strong></li>
+      </ul>
+    </div>
+
+    <form action="https://formsubmit.co/chantier.arbore@gmail.com" method="POST">
+      <h2 style="margin:0">Demande de soumission</h2>
+      <input type="hidden" name="_subject" value="Nouvelle demande — site Chantier Arbore">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+      <div class="ligne2">
+        <label>Nom<input type="text" name="nom" required autocomplete="name"></label>
+        <label>Téléphone<input type="tel" name="telephone" autocomplete="tel"></label>
+      </div>
+      <div class="ligne2">
+        <label>Courriel<input type="email" name="email" required autocomplete="email"></label>
+        <label>Ville<input type="text" name="ville" autocomplete="address-level2"></label>
+      </div>
+      <label>Service
+        <select name="service">
+          <option>Vidéo par drone (tournage et montage)</option>
+          <option>Photogrammétrie / plan 3D / volumes</option>
+          <option>Inspection visuelle par drone (toiture, bâtiment, arbres)</option>
+          <option>Suivi de chantier vu du ciel</option>
+          <option>Abattage d'arbre</option>
+          <option>Émondage / élagage</option>
+          <option>Dégagement de terrain</option>
+          <option>Rénovation légère / menuiserie</option>
+          <option>Création d'application Android</option>
+          <option>Autre</option>
+        </select>
+      </label>
+      <label>Décrivez votre projet<textarea name="message" required placeholder="Ex. : vidéo aérienne de ma ferme pour la mettre en vente, ou un gros érable mort près du garage."></textarea></label>
+      <button class="bouton" type="submit">Envoyer la demande</button>
+      <p class="note">Vous pouvez aussi nous écrire directement à <a href="mailto:chantier.arbore@gmail.com">chantier.arbore@gmail.com</a>.</p>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="pied">
+  <div class="conteneur">
+    <div class="colonnes">
+      <div>
+        <h3>Chantier Arbore inc.</h3>
+        <p>Vidéo par drone, photogrammétrie et plans 3D, abattage d'arbres et rénovation légère. Lanaudière et partout au Québec.</p>
+        <p>1110, rang du Sud-de-la-Rivière-du-Chicot<br>Saint-Cuthbert (Québec) J0K 2C0</p>
+        <p>NEQ : 1181979049</p>
+      </div>
+      <div>
+        <h3>Services</h3>
+        <ul>
+          <li><a href="drone-3d.html#videos">Vidéo par drone</a></li>
+          <li><a href="drone-3d.html#photogrammetrie">Photogrammétrie et plans 3D</a></li>
+          <li><a href="abattage-emondage.html">Abattage et émondage</a></li>
+          <li><a href="renovation.html">Rénovation légère</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="conteseveil.html">Création d'applications</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nous joindre</h3>
+        <ul>
+          <li><a href="tel:+14385023438">438-502-3438</a></li>
+          <li><a href="mailto:chantier.arbore@gmail.com">chantier.arbore@gmail.com</a></li>
+          <li><a href="https://www.youtube.com/@dronechantierarbore">Chaîne YouTube</a></li>
+          <li><a href="contact.html">Demander une soumission</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bas">
+      <span>© <span class="annee">2026</span> Chantier Arbore inc. Tous droits réservés.</span>
+      <span><a href="https://conteseveilstudio-cmd.github.io/conteseveil-legal/">Politique de confidentialité et conditions d'utilisation</a></span>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

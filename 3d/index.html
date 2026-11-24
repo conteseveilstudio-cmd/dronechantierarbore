@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relevé 3D par drone — Chantier Arbore inc.</title>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+<style>
+  :root { --fond:#101418; --panneau:#1a2027; --texte:#eef1f3; --doux:#9aa6b2; --accent:#e0703a; --ligne:#2c353e; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; height:100%; background:var(--fond); color:var(--texte); font:16px/1.4 "Segoe UI", system-ui, sans-serif; }
+  .page { display:grid; grid-template-rows:auto 1fr auto; height:100%; }
+  header { padding:14px 20px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; border-bottom:1px solid var(--ligne); }
+  header h1 { margin:0; font-size:22px; }
+  header span { color:var(--doux); font-size:14px; }
+  model-viewer { width:100%; height:100%; background:radial-gradient(circle at 50% 40%, #26303a, #0d1115); --poster-color:transparent; }
+  .barre { display:flex; flex-wrap:wrap; gap:8px; padding:12px 20px; background:var(--panneau); border-top:1px solid var(--ligne); align-items:center; }
+  button, select { font:600 15px "Segoe UI", system-ui, sans-serif; color:var(--texte); background:#24303b; border:1px solid var(--ligne); border-radius:10px; padding:10px 14px; cursor:pointer; }
+  button:hover, select:hover { border-color:var(--accent); }
+  button.actif { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .aide { margin-left:auto; color:var(--doux); font-size:13px; }
+  .chargement { position:absolute; inset:0; display:grid; place-items:center; color:var(--doux); font-size:18px; pointer-events:none; }
+  .barre-progression { position:absolute; left:20%; right:20%; top:60%; height:6px; background:#2c353e; border-radius:3px; overflow:hidden; }
+  .barre-progression div { height:100%; width:0; background:var(--accent); transition:width .2s; }
+  .zone { position:relative; min-height:0; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <a href="../index.html" style="color:#e0703a;text-decoration:none;font-weight:600">← Retour au site</a>
+    <h1>Relevé 3D par drone d'une propriété résidentielle</h1>
+    <span>Photogrammétrie · drone DJI Lito X1 · 1554 photos · réalisé par Chantier Arbore inc.</span>
+  </header>
+
+  <div class="zone">
+    <model-viewer id="modele"
+      
+      alt="Modèle 3D d'une propriété résidentielle réalisé par drone"
+      camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="0" rotation-per-second="12deg"
+      camera-orbit="30deg 58deg 70%" field-of-view="35deg" min-camera-orbit="auto auto 0.5m" min-field-of-view="8deg" max-camera-orbit="auto 95deg auto"
+      tone-mapping="neutral" exposure="1" shadow-intensity="0" interaction-prompt="none">
+      <div slot="progress-bar"></div>
+    </model-viewer>
+    <div class="chargement" id="chargement">Chargement du modèle 3D…
+      <div class="barre-progression"><div id="progression"></div></div>
+    </div>
+  </div>
+
+  <div class="barre">
+    <button id="vue-ensemble">Vue d'ensemble</button>
+    <button id="vue-dessus">Vue du dessus</button>
+    <button id="vue-maison">Vue rapprochée</button>
+    <button id="rotation" class="actif">Rotation automatique</button>
+    <select id="qualite" aria-label="Qualité">
+      <option value="modele_3D_8K.glb">Haute qualité (8K)</option>
+      <option value="modele_3D_mobile.glb">Qualité standard (4K)</option>
+    </select>
+    <button id="plein-ecran">Plein écran</button>
+    <span class="aide">Clic gauche : tourner · Molette : zoomer · Clic droit : déplacer · <b>Double-clic : s'approcher d'un point</b></span>
+  </div>
+</div>
+
+<script>
+  const mv = document.getElementById('modele');
+  const charger = f => { mv.src = f + '?v=' + Date.now(); };
+  const choix = document.getElementById('qualite');
+  if (/Android|iPhone|iPad/i.test(navigator.userAgent)) choix.value = 'modele_3D_mobile.glb';
+  charger(choix.value);
+  const chargement = document.getElementById('chargement');
+  const prog = document.getElementById('progression');
+  mv.addEventListener('progress', e => {
+    prog.style.width = (e.detail.totalProgress * 100) + '%';
+    chargement.style.display = e.detail.totalProgress >= 1 ? 'none' : 'grid';
+  });
+  const vue = (orbite, fov) => { mv.cameraOrbit = orbite; mv.fieldOfView = fov; mv.cameraTarget = 'auto auto auto'; };
+  document.getElementById('vue-ensemble').onclick = () => vue('30deg 58deg 70%', '35deg');
+  document.getElementById('vue-dessus').onclick = () => { mv.autoRotate = false; majRotation(); vue('0deg 0deg 100%', '35deg'); };
+  document.getElementById('vue-maison').onclick = () => vue('30deg 62deg 32%', '30deg');
+  // Double-clic : centre la caméra sur le point visé et s'en approche
+  mv.addEventListener('dblclick', e => {
+    const r = mv.getBoundingClientRect();
+    const hit = mv.positionAndNormalFromPoint(e.clientX - r.left, e.clientY - r.top);
+    if (!hit) return;
+    mv.autoRotate = false; majRotation();
+    const p = hit.position, o = mv.getCameraOrbit();
+    mv.cameraTarget = p.x + 'm ' + p.y + 'm ' + p.z + 'm';
+    mv.cameraOrbit = o.theta + 'rad ' + o.phi + 'rad ' + Math.max(o.radius * 0.35, 1.2) + 'm';
+  });
+  const btnRot = document.getElementById('rotation');
+  const majRotation = () => btnRot.classList.toggle('actif', mv.autoRotate);
+  btnRot.onclick = () => { mv.autoRotate = !mv.autoRotate; majRotation(); };
+  document.getElementById('qualite').onchange = e => { chargement.style.display = 'grid'; prog.style.width = '0'; charger(e.target.value); };
+  document.getElementById('plein-ecran').onclick = () => {
+    if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen();
+  };
+</script>
+</body>
+</html>
+
+
+
