@@ -41,13 +41,13 @@ p { margin: 0 0 1em; }
 .logo svg { width: 34px; height: 34px; flex: none; }
 .logo small { display: block; font-weight: 400; font-size: .75rem; opacity: .75; }
 .menu { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-.menu a { color: var(--blanc); text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 500; font-size: .95rem; }
+.menu a { white-space: nowrap; color: var(--blanc); text-decoration: none; padding: 8px 12px; border-radius: 8px; font-weight: 500; font-size: .95rem; }
 .menu a:hover, .menu a[aria-current="page"] { background: rgba(255,255,255,.12); }
 .menu .bouton { background: var(--orange); }
 .menu .bouton:hover, .menu .bouton[aria-current="page"] { background: var(--orange-fonce); }
 .menu-toggle { display: none; background: none; border: 1px solid rgba(255,255,255,.4); color: var(--blanc); border-radius: 8px; padding: 8px 12px; font: inherit; cursor: pointer; }
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .menu-toggle { display: block; }
   .menu { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; background: var(--vert-fonce); padding: 10px 20px 20px; }
   .menu.ouvert { display: flex; }
