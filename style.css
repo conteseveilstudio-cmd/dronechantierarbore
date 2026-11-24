@@ -187,3 +187,7 @@ a.atout:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.
 .faq summary { cursor: pointer; font-weight: 600; color: var(--vert-fonce); font-size: 1.05rem; }
 .faq details[open] summary { color: var(--orange-fonce); margin-bottom: 8px; }
 .faq details p { margin: 0; color: var(--doux); }
+
+/* Zone desservie : régions du Québec */
+.regions { list-style: none; padding: 0; margin: 1.2em 0; display: flex; flex-wrap: wrap; gap: .5em; }
+.regions li { padding: .35em .8em; border: 1px solid var(--doux); border-radius: 999px; font-size: .95rem; }
