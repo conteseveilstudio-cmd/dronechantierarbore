@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dronechantierarbore.ca/sitemap.xml
