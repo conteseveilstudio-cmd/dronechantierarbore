@@ -38,7 +38,7 @@
       
       alt="Modèle 3D d'une propriété résidentielle réalisé par drone"
       camera-controls touch-action="pan-y" auto-rotate auto-rotate-delay="0" rotation-per-second="12deg"
-      camera-orbit="30deg 58deg 70%" field-of-view="35deg" min-camera-orbit="auto auto 0.5m" min-field-of-view="8deg" max-camera-orbit="auto 95deg auto"
+      camera-orbit="315deg 72deg 55%" field-of-view="35deg" min-camera-orbit="auto auto 0.5m" min-field-of-view="8deg" max-camera-orbit="auto 95deg auto"
       tone-mapping="neutral" exposure="1" shadow-intensity="0" interaction-prompt="none">
       <div slot="progress-bar"></div>
     </model-viewer>
@@ -53,6 +53,7 @@
     <button id="vue-maison">Vue rapprochée</button>
     <button id="rotation" class="actif">Rotation automatique</button>
     <select id="qualite" aria-label="Qualité">
+      <option value="modele_3D_UltraHD.glb">Ultra HD — ordinateur (99 Mo)</option>
       <option value="modele_3D_8K.glb">Haute qualité (8K)</option>
       <option value="modele_3D_mobile.glb">Qualité standard (4K)</option>
     </select>
@@ -74,9 +75,9 @@
     chargement.style.display = e.detail.totalProgress >= 1 ? 'none' : 'grid';
   });
   const vue = (orbite, fov) => { mv.cameraOrbit = orbite; mv.fieldOfView = fov; mv.cameraTarget = 'auto auto auto'; };
-  document.getElementById('vue-ensemble').onclick = () => vue('30deg 58deg 70%', '35deg');
+  document.getElementById('vue-ensemble').onclick = () => vue('315deg 72deg 55%', '35deg');
   document.getElementById('vue-dessus').onclick = () => { mv.autoRotate = false; majRotation(); vue('0deg 0deg 100%', '35deg'); };
-  document.getElementById('vue-maison').onclick = () => vue('30deg 62deg 32%', '30deg');
+  document.getElementById('vue-maison').onclick = () => vue('315deg 72deg 30%', '30deg');
   // Double-clic : centre la caméra sur le point visé et s'en approche
   mv.addEventListener('dblclick', e => {
     const r = mv.getBoundingClientRect();
