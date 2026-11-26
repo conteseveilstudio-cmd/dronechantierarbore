@@ -116,7 +116,8 @@ section.pale { background: var(--vert-pale); }
 .appel .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
 /* ---------- Démo 3D ---------- */
-.demo3d { position: relative; border-radius: var(--rayon); overflow: hidden; background: #0d1115; }
+.demos3d { display: grid; gap: 16px; }
+.demo3d { display: block; position: relative; border-radius: var(--rayon); overflow: hidden; background: #0d1115; }
 .demo3d img { width: 100%; aspect-ratio: 16/9; object-fit: cover; opacity: .7; }
 .demo3d .superpose { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; color: var(--blanc); padding: 20px; }
 .demo3d .superpose h3 { color: var(--blanc); font-size: 1.6rem; }
